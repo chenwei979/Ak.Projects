@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Dapper.Contrib.Extensions;
+using System;
 
 namespace Ak.Projects.Entities
 {
+    [Table("[dbo].[User]")]
     public class UserEntity
     {
+        [Key]
         public int Id { get; set; }
         public Guid Guid { get; set; }
         public DateTime? CreateDate { get; set; }

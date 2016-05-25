@@ -4,6 +4,7 @@
   "dependencies": {
     "Ak.Projects.Entities": "1.0.0-*",
     "Dapper": "1.50-*",
+    "Dapper.Contrib": "1.50-*",
     "NETStandard.Library": "1.5.0-rc2-24027"
   },
 
