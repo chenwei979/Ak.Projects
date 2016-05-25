@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Ak.Projects.BusnissLogic;
+using Ak.Projects.Entities;
 
 namespace Ak.Projects.Service.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        public ValuesController()
+        {
+            BusnissLogic = new UserBusnissLogic();
+        }
+
+        protected UserBusnissLogic BusnissLogic { get; set; }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<UserEntity> Get()
         {
-            return new string[] { "value1", "value2" };
+            return BusnissLogic.GetItems();
+            //return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5

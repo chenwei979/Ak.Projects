@@ -1,7 +1,9 @@
-﻿{
+{
   "version": "1.0.0-*",
 
   "dependencies": {
+    "Ak.Projects.DataAccess": "1.0.0-*",
+    "Ak.Projects.Entities": "1.0.0-*",
     "NETStandard.Library": "1.5.0-rc2-24027"
   },
 
