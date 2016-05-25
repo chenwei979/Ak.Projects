@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 Common", "00 Common", "{6208FE39-D315-466F-A8FA-0AF16A05791F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Common", "01 Common", "{6208FE39-D315-466F-A8FA-0AF16A05791F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 DataAccess", "02 DataAccess", "{178005EB-1720-4B79-9B26-C05BB4CEAB24}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 DataAccess", "03 DataAccess", "{178005EB-1720-4B79-9B26-C05BB4CEAB24}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 BusnissLogic", "03 BusnissLogic", "{FEB3E49E-F180-42E3-BA5F-55109095599E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 BusnissLogic", "04 BusnissLogic", "{FEB3E49E-F180-42E3-BA5F-55109095599E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 Service", "04 Service", "{F60E4C99-D945-4509-8D0C-8CD9A343C252}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 Service", "05 Service", "{F60E4C99-D945-4509-8D0C-8CD9A343C252}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 UI", "05 UI", "{CE92075C-2999-45EE-A3C6-2BFAEDD7E562}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 UI", "06 UI", "{CE92075C-2999-45EE-A3C6-2BFAEDD7E562}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Ak.Projects.UI.Admin", "Ak.Projects.UI.Admin\Ak.Projects.UI.Admin.xproj", "{4A6ADFE3-A10B-40A9-BB7B-1422A8155DF9}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Ak.Projects.UI.Portal", "Ak.Projects.UI.Portal\Ak.Projects.UI.Portal.xproj", "{DC22BC00-BD74-4F34-B5DF-7ED78670A017}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Entities", "01 Entities", "{E6C5552B-E0F4-4E6E-B640-C5EFF0423723}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Entities", "02 Entities", "{E6C5552B-E0F4-4E6E-B640-C5EFF0423723}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Ak.Projects.DataAccess", "Ak.Projects.DataAccess\Ak.Projects.DataAccess.xproj", "{C332F73B-5305-43B2-BF17-9BF85583EFF8}"
 EndProject
@@ -32,6 +32,13 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Ak.Projects.Common.Redis", "Ak.Projects.Common.Redis\Ak.Projects.Common.Redis.xproj", "{E04C22AA-125C-4C1F-9988-F7F3EDA0B2E1}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Ak.Projects.Common.RabbitMq", "Ak.Projects.Common.RabbitMq\Ak.Projects.Common.RabbitMq.xproj", "{54276137-7161-4170-96F3-2B8C7D9F712A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 References", "00 References", "{9973F94E-A102-4F2A-BA9F-E325F53E33F8}"
+	ProjectSection(SolutionItems) = preProject
+		Ak.Prokects.References\Dapper.Contrib.dll = Ak.Prokects.References\Dapper.Contrib.dll
+		Ak.Prokects.References\Dapper.dll = Ak.Prokects.References\Dapper.dll
+		Ak.Prokects.References\Dapper.Rainbow.dll = Ak.Prokects.References\Dapper.Rainbow.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

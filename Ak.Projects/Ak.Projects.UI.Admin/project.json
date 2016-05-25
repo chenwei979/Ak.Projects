@@ -9,7 +9,12 @@
     "Dapper": "1.50.0-rc2",
     "Autofac": "4.0.0-rc2-240",
     "StackExchange.Redis": "1.1.604-alpha",
-    "AutoMapper": "5.0.0-beta-1"
+    "AutoMapper": "5.0.0-beta-1",
+    "Newtonsoft.Json": "8.0.4-beta1",
+    "NLog": "4.4.0-beta9",
+    "knockoutjs": "3.4.0",
+    "KendoUICore": "2016.2.504",
+    "bootstrap": "3.3.6"
   },
 
   "tools": {
