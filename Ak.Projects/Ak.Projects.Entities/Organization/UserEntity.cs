@@ -1,10 +1,11 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Ak.Projects.Common.DataAccess;
+using Dapper.Contrib.Extensions;
 using System;
 
 namespace Ak.Projects.Entities
 {
     [Table("[dbo].[User]")]
-    public class UserEntity
+    public class UserEntity : IEntity
     {
         [Key]
         public int Id { get; set; }
