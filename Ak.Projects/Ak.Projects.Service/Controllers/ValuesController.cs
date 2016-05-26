@@ -11,12 +11,7 @@ namespace Ak.Projects.Service.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        public ValuesController()
-        {
-            BusnissLogic = new UserBusnissLogic();
-        }
-
-        protected UserBusnissLogic BusnissLogic { get; set; }
+        public UserBusnissLogic BusnissLogic { get; set; }
 
         // GET api/values
         [HttpGet]

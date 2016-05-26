@@ -1,9 +1,6 @@
 ﻿using Ak.Projects.Entities;
-using Dapper;
-using Dapper.Contrib.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using Ak.Projects.Common.DataAccess;
 
