@@ -1,10 +1,11 @@
 ﻿using Ak.Projects.DataAccess;
 using Ak.Projects.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Ak.Projects.BusnissLogic
 {
-    public class UserBusnissLogic
+    public class UserBusnissLogic : IDisposable
     {
         public UserDataAccess DataAccess { get; set; }
 
@@ -16,6 +17,11 @@ namespace Ak.Projects.BusnissLogic
         public IList<UserEntity> GetItems()
         {
             return DataAccess.GetItems();
+        }
+
+        public void Dispose()
+        {
+            DataAccess.Dispose();
         }
     }
 }

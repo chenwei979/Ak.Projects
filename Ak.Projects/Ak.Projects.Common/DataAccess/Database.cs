@@ -66,6 +66,7 @@ namespace Ak.Projects.Common.DataAccess
 
         public void Dispose()
         {
+            if (DbConnection.State != ConnectionState.Closed) DbConnection.Close();
             DbConnection.Dispose();
         }
     }

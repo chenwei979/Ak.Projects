@@ -50,5 +50,11 @@ namespace Ak.Projects.Service.Controllers
         public void Delete(int id)
         {
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            BusnissLogic.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }
