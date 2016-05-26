@@ -11,6 +11,11 @@ namespace Ak.Projects.Common.DataAccess
     {
         public IUnitOfWork UnitOfWork { get; set; }
 
+        public Repository(IUnitOfWork unitOfWork)
+        {
+            UnitOfWork = unitOfWork;
+        }
+
         #region Save
 
         protected virtual void Insert(TEntity entity)

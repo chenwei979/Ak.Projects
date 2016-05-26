@@ -8,6 +8,7 @@ namespace Ak.Projects.Common.DataAccess
         public UnitOfWork(IDatabase database)
         {
             Database = database;
+            Database.Open();
             Transaction = Database.BeginTransaction();
             IsolationLevel = Transaction.IsolationLevel;
             Connection = Transaction.Connection;

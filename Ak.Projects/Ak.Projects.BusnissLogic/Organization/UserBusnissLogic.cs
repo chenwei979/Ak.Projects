@@ -8,6 +8,11 @@ namespace Ak.Projects.BusnissLogic
     {
         public UserDataAccess DataAccess { get; set; }
 
+        public UserBusnissLogic(UserDataAccess dataAccess)
+        {
+            DataAccess = dataAccess;
+        }
+
         public IList<UserEntity> GetItems()
         {
             return DataAccess.GetItems();

@@ -13,6 +13,11 @@ namespace Ak.Projects.Service.Controllers
     {
         public UserBusnissLogic BusnissLogic { get; set; }
 
+        public ValuesController(UserBusnissLogic busnissLogic)
+        {
+            BusnissLogic = busnissLogic;
+        }
+
         // GET api/values
         [HttpGet]
         public IEnumerable<UserEntity> Get()
