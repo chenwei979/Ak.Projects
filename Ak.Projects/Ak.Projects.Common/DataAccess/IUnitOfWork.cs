@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ak.Entities
+namespace Ak.Projects.Common.DataAccess
 {
     public interface IUnitOfWork : IDisposable
     {
