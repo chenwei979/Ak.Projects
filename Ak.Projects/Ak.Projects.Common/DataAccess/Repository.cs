@@ -25,7 +25,7 @@ namespace Ak.Projects.Common.DataAccess
             entity.CreateDate = now;
             entity.UpdateDate = now;
 
-            UnitOfWork.Database.Insert(entity);
+            UnitOfWork.Database.Insert(entity, UnitOfWork);
         }
 
         protected virtual void Update(TEntity entity)
@@ -38,7 +38,7 @@ namespace Ak.Projects.Common.DataAccess
             entity.CreateDate = orgEntity.CreateDate;
             entity.UpdateDate = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("China Standard Time"));
 
-            UnitOfWork.Database.Update(entity);
+            UnitOfWork.Database.Update(entity, UnitOfWork);
         }
 
         public virtual void Save(params TEntity[] entities)
@@ -59,7 +59,7 @@ namespace Ak.Projects.Common.DataAccess
             var entity = GetItemById(id);
             if (entity == null) throw new Exception(string.Format("Delete failed, cannot find this item which Id is {0}.", id));
 
-            UnitOfWork.Database.Delete(entity);
+            UnitOfWork.Database.Delete(entity, UnitOfWork);
         }
 
         public virtual void Delete(params int[] ids)
@@ -76,17 +76,17 @@ namespace Ak.Projects.Common.DataAccess
 
         public virtual TEntity GetItemById(int id)
         {
-            return UnitOfWork.Database.Get<TEntity>(id);
+            return UnitOfWork.Database.Get<TEntity>(id, UnitOfWork);
         }
 
         public virtual TEntity GetItemByGuid(Guid guid)
         {
-            return UnitOfWork.Database.Get<TEntity>(guid);
+            return UnitOfWork.Database.Get<TEntity>(guid, UnitOfWork);
         }
 
         public virtual IList<TEntity> GetAllItems()
         {
-            return UnitOfWork.Database.GetAll<TEntity>().ToList();
+            return UnitOfWork.Database.GetAll<TEntity>(UnitOfWork).ToList();
         }
 
         #endregion

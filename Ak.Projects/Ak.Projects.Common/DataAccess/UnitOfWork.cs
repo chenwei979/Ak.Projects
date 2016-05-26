@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 
 namespace Ak.Projects.Common.DataAccess
 {
@@ -8,8 +9,12 @@ namespace Ak.Projects.Common.DataAccess
         {
             Database = database;
             Transaction = Database.BeginTransaction();
+            IsolationLevel = Transaction.IsolationLevel;
+            Connection = Transaction.Connection;
         }
 
+        public IsolationLevel IsolationLevel { get; set; }
+        public IDbConnection Connection { get; set; }
         public IDatabase Database { get; set; }
         protected IDbTransaction Transaction { get; set; }
 
@@ -17,12 +22,22 @@ namespace Ak.Projects.Common.DataAccess
         {
             try
             {
-                Transaction.Commit();
+                Commit();
             }
             catch
             {
-                Transaction.Rollback();
+                Rollback();
             }
+        }
+
+        public void Commit()
+        {
+            Transaction.Commit();
+        }
+
+        public void Rollback()
+        {
+            Transaction.Rollback();
         }
 
         public void Dispose()
