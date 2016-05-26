@@ -1,29 +1,33 @@
-﻿using Ak.Entities;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 
-namespace Ak.Entities
+namespace Ak.Projects.Common.DataAccess
 {
-    public class EfUnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
-        public EfUnitOfWork(IDbContext dbContext)
+        public UnitOfWork(IDbContext dbContext)
         {
             DbContext = dbContext;
+            DbTransaction = DbContext.Database.BeginTransaction();
         }
 
         public IDbContext DbContext { get; set; }
+        protected IDbTransaction DbTransaction { get; set; }
 
-        public bool SaveChanges()
+        public void SaveChanges()
         {
-            return DbContext.SaveChanges();
+            try
+            {
+                DbTransaction.Commit();
+            }
+            catch
+            {
+                DbTransaction.Rollback();
+            }
         }
 
         public void Dispose()
         {
+            DbTransaction.Dispose();
             DbContext.Dispose();
         }
     }

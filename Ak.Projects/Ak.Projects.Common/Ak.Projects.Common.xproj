@@ -15,13 +15,5 @@
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <DnxInvisibleCompile Include="DataAccess\IDbContext.cs" />
-    <DnxInvisibleCompile Include="DataAccess\IEntity.cs" />
-    <DnxInvisibleCompile Include="DataAccess\IRepository.cs" />
-    <DnxInvisibleCompile Include="DataAccess\IUnitOfWork.cs" />
-    <DnxInvisibleCompile Include="DataAccess\Repository.cs" />
-    <DnxInvisibleCompile Include="DataAccess\UnitOfWork.cs" />
-  </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

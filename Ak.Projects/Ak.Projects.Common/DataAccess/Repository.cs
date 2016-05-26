@@ -1,40 +1,34 @@
-﻿using Ak.Entities;
-using PagedList;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using Dapper;
+using Dapper.Contrib.Extensions;
 
-namespace Ak.Entities
+namespace Ak.Projects.Common.DataAccess
 {
-    public class EfRepository<TEntity> : IRepository<TEntity> where TEntity : class,IEntity
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
-        private DbSet<TEntity> _entitySet;
-        private IQueryable<TEntity> _entityQuery;
+        public IUnitOfWork UnitOfWork { get; set; }
 
-        public IDbContext DbContext { get; private set; }
-
-        public EfRepository(IDbContext dbContext)
+        public Repository(IUnitOfWork unitOfWork)
         {
-            DbContext = dbContext;
-            _entitySet = DbContext.Set<TEntity>();
-            _entityQuery = dbContext.Set<TEntity>().AsNoTracking();
+            UnitOfWork = unitOfWork;
         }
 
         #region Save
 
-        public virtual void Insert(TEntity entity)
+        protected virtual void Insert(TEntity entity)
         {
             entity.Guid = Guid.NewGuid();
             var now = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("China Standard Time"));
             entity.CreateDate = now;
             entity.UpdateDate = now;
 
-            _entitySet.Add(entity);
+            UnitOfWork.DbContext.Database.Insert(entity);
         }
 
-        public virtual void Update(TEntity entity)
+        protected virtual void Update(TEntity entity)
         {
             var orgEntity = GetItemById(entity.Id);
             entity.Id = orgEntity.Id;
@@ -44,16 +38,10 @@ namespace Ak.Entities
             entity.CreateDate = orgEntity.CreateDate;
             entity.UpdateDate = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("China Standard Time"));
 
-            DbContext.Entry(orgEntity).CurrentValues.SetValues(entity);
+            UnitOfWork.DbContext.Database.Update(entity);
         }
 
-        public virtual void Save(TEntity entity)
-        {
-            if (entity.Id > 0) Update(entity);
-            else Insert(entity);
-        }
-
-        public virtual void Save(IList<TEntity> entities)
+        public virtual void Save(params TEntity[] entities)
         {
             foreach (var entity in entities)
             {
@@ -66,19 +54,19 @@ namespace Ak.Entities
 
         #region Delete
 
-        public virtual void Delete(int id)
+        protected virtual void Delete(int id)
         {
             var entity = GetItemById(id);
             if (entity == null) throw new Exception(string.Format("Delete failed, cannot find this item which Id is {0}.", id));
-            _entitySet.Remove(entity);
+
+            UnitOfWork.DbContext.Database.Delete(entity);
         }
 
-        public virtual void Delete(int[] ids)
+        public virtual void Delete(params int[] ids)
         {
             foreach (var id in ids)
             {
-                var entity = GetItemById(id);
-                _entitySet.Remove(entity);
+                Delete(id);
             }
         }
 
@@ -88,40 +76,24 @@ namespace Ak.Entities
 
         public virtual TEntity GetItemById(int id)
         {
-            return _entitySet.Where(item => item.Id == id).FirstOrDefault();
-
+            return UnitOfWork.DbContext.Database.Get<TEntity>(id);
         }
 
         public virtual TEntity GetItemByGuid(Guid guid)
         {
-            return _entitySet.Where(item => item.Guid == guid).FirstOrDefault();
-        }
-
-        public virtual IList<TEntity> GetItems(Expression<Func<TEntity, bool>> filter)
-        {
-            return _entityQuery.Where(filter).ToList();
+            return UnitOfWork.DbContext.Database.Get<TEntity>(guid);
         }
 
         public virtual IList<TEntity> GetAllItems()
         {
-            return _entityQuery.ToList();
-        }
-
-        public IPagedList<TEntity> GetPagedItems(int pageIndex, int pageSize)
-        {
-            return _entityQuery.OrderByDescending(item => item.Id).ToPagedList(pageIndex, pageSize);
-        }
-
-        public virtual IQueryable<TEntity> GetItems()
-        {
-            return _entityQuery;
+            return UnitOfWork.DbContext.Database.GetAll<TEntity>().ToList();
         }
 
         #endregion
 
         public virtual void Dispose()
         {
-            DbContext.Dispose();
+            UnitOfWork.Dispose();
         }
     }
 }
