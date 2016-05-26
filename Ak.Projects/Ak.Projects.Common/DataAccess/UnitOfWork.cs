@@ -10,35 +10,26 @@ namespace Ak.Projects.Common.DataAccess
             Database = database;
             Database.Open();
             Transaction = Database.BeginTransaction();
-            IsolationLevel = Transaction.IsolationLevel;
-            Connection = Transaction.Connection;
         }
 
-        public IsolationLevel IsolationLevel { get; set; }
-        public IDbConnection Connection { get; set; }
         public IDatabase Database { get; set; }
-        protected IDbTransaction Transaction { get; set; }
+        public IDbTransaction Transaction { get; set; }
+
 
         public void SaveChanges()
         {
             try
             {
-                Commit();
+                Transaction.Commit();
             }
             catch
             {
-                Rollback();
+                Transaction.Rollback();
             }
-        }
-
-        public void Commit()
-        {
-            Transaction.Commit();
-        }
-
-        public void Rollback()
-        {
-            Transaction.Rollback();
+            finally
+            {
+                Database.Close();
+            }
         }
 
         public void Dispose()
