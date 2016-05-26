@@ -4,7 +4,7 @@ namespace Ak.Projects.Common.DataAccess
 {
     public interface IUnitOfWork : IDisposable
     {
-        IDbContext DbContext { get; set; }
+        IDatabase Database { get; set; }
         void SaveChanges();
     }
 }

@@ -3,8 +3,7 @@ using System.Data;
 
 namespace Ak.Projects.Common.DataAccess
 {
-    public interface IDbContext : IDisposable
+    public interface IDatabase : IDbConnection, IDisposable
     {
-        IDbConnection Database { get; set; }
     }
 }

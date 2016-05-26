@@ -4,31 +4,31 @@ namespace Ak.Projects.Common.DataAccess
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public UnitOfWork(IDbContext dbContext)
+        public UnitOfWork(IDatabase database)
         {
-            DbContext = dbContext;
-            DbTransaction = DbContext.Database.BeginTransaction();
+            Database = database;
+            Transaction = Database.BeginTransaction();
         }
 
-        public IDbContext DbContext { get; set; }
-        protected IDbTransaction DbTransaction { get; set; }
+        public IDatabase Database { get; set; }
+        protected IDbTransaction Transaction { get; set; }
 
         public void SaveChanges()
         {
             try
             {
-                DbTransaction.Commit();
+                Transaction.Commit();
             }
             catch
             {
-                DbTransaction.Rollback();
+                Transaction.Rollback();
             }
         }
 
         public void Dispose()
         {
-            DbTransaction.Dispose();
-            DbContext.Dispose();
+            Transaction.Dispose();
+            Database.Dispose();
         }
     }
 }
