@@ -13,26 +13,26 @@ namespace Ak.Projects.DataAccess
         {
         }
 
-        public IList<UserEntity> GetItems()
-        {
-            var items = GetAllItems();
+        //public IList<UserEntity> GetItems()
+        //{
+        //    var items = GetAllItems();
 
-            var updateItem = items.Where(item => item.Id == 3).FirstOrDefault();
-            updateItem.Account = "bruce.chen1";
-            Save(updateItem);
+        //    var updateItem = items.Where(item => item.Id == 3).FirstOrDefault();
+        //    updateItem.Account = "bruce.chen1";
+        //    Save(updateItem);
 
-            var insertItem = new UserEntity()
-            {
-                Guid = Guid.NewGuid(),
-                Account = "chenwei_9791",
-                Password = "cw9791",
-                DisplayName = "Bruce Chen"
-            };
-            Save(insertItem);
+        //    var insertItem = new UserEntity()
+        //    {
+        //        Guid = Guid.NewGuid(),
+        //        Account = "chenwei_9791",
+        //        Password = "cw9791",
+        //        DisplayName = "Bruce Chen"
+        //    };
+        //    Save(insertItem);
 
-            UnitOfWork.SaveChanges();
+        //    UnitOfWork.SaveChanges();
 
-            return items;
-        }
+        //    return items;
+        //}
     }
 }

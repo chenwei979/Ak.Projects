@@ -14,9 +14,19 @@ namespace Ak.Projects.BusnissLogic
             DataAccess = dataAccess;
         }
 
-        public IList<UserEntity> GetItems()
+        public void Save(params UserEntity[] entities)
         {
-            return DataAccess.GetItems();
+            DataAccess.Save(entities);
+        }
+
+        public void GetItemById(long id)
+        {
+            DataAccess.GetItemById(id);
+        }
+
+        public IList<UserEntity> GetAllItems()
+        {
+            return DataAccess.GetAllItems();
         }
 
         public void Dispose()
