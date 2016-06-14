@@ -4,13 +4,14 @@ namespace Ak.Projects.Common.DataAccess
 {
     public interface IEntity
     {
-        int Id { get; set; }
-        Guid Guid { get; set; }
+        long Id { get; set; }
+
         DateTime? CreateDate { get; set; }
-        Guid? CreatorGUID { get; set; }
+        long? CreatorId { get; set; }
         string CreatorName { get; set; }
+
         DateTime? UpdateDate { get; set; }
-        Guid? UpdaterGUID { get; set; }
+        long? UpdaterId { get; set; }
         string UpdaterName { get; set; }
     }
 

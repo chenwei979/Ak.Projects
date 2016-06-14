@@ -18,13 +18,13 @@ namespace Ak.Projects.DataAccess
             var items = GetAllItems();
 
             var updateItem = items.Where(item => item.Id == 3).FirstOrDefault();
-            updateItem.UserName = "bruce.chen1";
+            updateItem.Account = "bruce.chen1";
             Save(updateItem);
 
             var insertItem = new UserEntity()
             {
                 Guid = Guid.NewGuid(),
-                UserName = "chenwei_9791",
+                Account = "chenwei_9791",
                 Password = "cw9791",
                 DisplayName = "Bruce Chen"
             };
