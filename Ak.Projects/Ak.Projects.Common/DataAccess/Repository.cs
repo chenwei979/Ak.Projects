@@ -20,7 +20,7 @@ namespace Ak.Projects.Common.DataAccess
 
         protected virtual void Insert(TEntity entity)
         {
-            entity.Guid = Guid.NewGuid();
+            entity.Id = IdWorkerFactory.Singleton.NextId();
             var now = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("China Standard Time"));
             entity.CreateDate = now;
             entity.UpdateDate = now;
@@ -32,9 +32,8 @@ namespace Ak.Projects.Common.DataAccess
         {
             var orgEntity = GetItemById(entity.Id);
             entity.Id = orgEntity.Id;
-            entity.Guid = orgEntity.Guid;
             entity.CreatorName = orgEntity.CreatorName;
-            entity.CreatorGUID = orgEntity.CreatorGUID;
+            entity.CreatorId = orgEntity.CreatorId;
             entity.CreateDate = orgEntity.CreateDate;
             entity.UpdateDate = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("China Standard Time"));
 
@@ -54,7 +53,7 @@ namespace Ak.Projects.Common.DataAccess
 
         #region Delete
 
-        protected virtual void Delete(int id)
+        protected virtual void Delete(long id)
         {
             var entity = GetItemById(id);
             if (entity == null) throw new Exception(string.Format("Delete failed, cannot find this item which Id is {0}.", id));
@@ -62,7 +61,7 @@ namespace Ak.Projects.Common.DataAccess
             UnitOfWork.Database.Delete(entity, UnitOfWork.Transaction);
         }
 
-        public virtual void Delete(params int[] ids)
+        public virtual void Delete(params long[] ids)
         {
             foreach (var id in ids)
             {
@@ -74,14 +73,9 @@ namespace Ak.Projects.Common.DataAccess
 
         #region Get
 
-        public virtual TEntity GetItemById(int id)
+        public virtual TEntity GetItemById(long id)
         {
             return UnitOfWork.Database.Get<TEntity>(id, UnitOfWork.Transaction);
-        }
-
-        public virtual TEntity GetItemByGuid(Guid guid)
-        {
-            return UnitOfWork.Database.Get<TEntity>(guid, UnitOfWork.Transaction);
         }
 
         public virtual IList<TEntity> GetAllItems()

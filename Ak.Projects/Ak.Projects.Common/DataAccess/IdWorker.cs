@@ -2,7 +2,12 @@
 
 namespace Ak.Projects.Common.DataAccess
 {
-    public class IdWorker
+    public interface IIdWorker
+    {
+        long NextId();
+    }
+
+    public class IdWorker : IIdWorker
     {
         //机器标识位数
         private const int WORKER_ID_BITS = 4;
@@ -87,6 +92,24 @@ namespace Ak.Projects.Common.DataAccess
         private long TimeGen()
         {
             return (DateTime.UtcNow.Ticks - START_TIME.Ticks) / 10000;
+        }
+    }
+
+    public class IdWorkerFactory
+    {
+        private static IIdWorker _singleton = null;
+
+        static IdWorkerFactory()
+        {
+            _singleton = new IdWorker(12L);
+        }
+
+        public static IIdWorker Singleton
+        {
+            get
+            {
+                return _singleton;
+            }
         }
     }
 }

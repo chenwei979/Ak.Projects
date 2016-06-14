@@ -9,11 +9,9 @@ namespace Ak.Projects.Common.DataAccess
 
         void Save(params TEntity[] entities);
 
-        void Delete(params int[] ids);
+        void Delete(params long[] ids);
 
-        TEntity GetItemById(int id);
-
-        TEntity GetItemByGuid(Guid guid);
+        TEntity GetItemById(long id);
 
         IList<TEntity> GetAllItems();
     }
