@@ -75,7 +75,7 @@ namespace Ak.Projects.Common.DataAccess
     {
         public SqlServerDatabase()
         {
-            ConnectionString = "data source=aa6od2pqa9.database.chinacloudapi.cn;initial catalog=AKProject;user id=akmii@aa6od2pqa9;password=!QAZ2wsx;";
+            ConnectionString = "data source=DESKTOP-056M100\SQLEXPRESS;initial catalog=AkProjects;user id=sa;password=123;";
             DbConnection = new SqlConnection(ConnectionString);
         }
     }

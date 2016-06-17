@@ -19,5 +19,11 @@ namespace Ak.Projects.Entities
         public string Account { get; set; }
         public string Password { get; set; }
         public string DisplayName { get; set; }
+
+        public long? DepartmentId { get; set; }
+        public string DepartmentName { get; set; }
+
+        public long? RoleId { get; set; }
+        public string RoleName { get; set; }
     }
 }
