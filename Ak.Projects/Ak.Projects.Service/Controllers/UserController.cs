@@ -12,9 +12,13 @@ namespace Ak.Projects.Service.Controllers
     {
         public UserBusnissLogic BusnissLogic { get; set; }
 
-        [HttpPost]
-        public void Post([FromBody]UserEntity user)
+        //[HttpPost]
+        public void Index()
         {
+            var user = new UserEntity();
+            user.Account = "bruce.chen";
+            user.Password = "123";
+            user.DisplayName = "Bruce Chen";
             BusnissLogic.Save(user);
         }
     }
