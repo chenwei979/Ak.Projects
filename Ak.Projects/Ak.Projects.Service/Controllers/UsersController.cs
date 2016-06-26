@@ -13,6 +13,11 @@ namespace Ak.Projects.Service.Controllers
     {
         public UserBusnissLogic BusnissLogic { get; set; }
 
+        public UsersController(UserBusnissLogic busnissLogic)
+        {
+            BusnissLogic = busnissLogic;
+        }
+
         //[HttpPost]
         [HttpGet]
         public string Index()
