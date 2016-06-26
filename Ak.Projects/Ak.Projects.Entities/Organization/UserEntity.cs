@@ -9,6 +9,7 @@ namespace Ak.Projects.Entities
     {
         [Key]
         public long Id { get; set; }
+        public long ApplicationId { get; set; }
         public DateTime? CreateDate { get; set; }
         public long? CreatorId { get; set; }
         public string CreatorName { get; set; }

@@ -5,6 +5,7 @@ namespace Ak.Projects.Common.DataAccess
     public interface IEntity
     {
         long Id { get; set; }
+        long ApplicationId { get; set; }
 
         DateTime? CreateDate { get; set; }
         long? CreatorId { get; set; }

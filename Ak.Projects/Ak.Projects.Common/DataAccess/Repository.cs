@@ -20,7 +20,7 @@ namespace Ak.Projects.Common.DataAccess
 
         protected virtual void Insert(TEntity entity)
         {
-            entity.Id = IdWorkerFactory.Singleton.NextId();
+            entity.ApplicationId = IdWorkerFactory.Singleton.NextId();
             var now = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("China Standard Time"));
             entity.CreateDate = now;
             entity.UpdateDate = now;
